@@ -32,8 +32,9 @@ public class HSASpiderRunnable implements Runnable {
     public void run() {
 
         try {
+            String startDateTime = DateTimeUtil.getCurrentDateTimeString();
             String result = CURLUtil.curl(url);
-            String dateTime = DateTimeUtil.getCurrentDateTimeString();
+            String endDateTime = DateTimeUtil.getCurrentDateTimeString();
 
             File file = new File(workDir,
                     DateTimeUtil.getCurrentDateString() + "/" + DateTimeUtil.getCurrentHourString());
@@ -42,7 +43,7 @@ public class HSASpiderRunnable implements Runnable {
             }
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
 
-            writer.append(dateTime + result + "\n");
+            writer.append(startDateTime + " | " + endDateTime + result + "\n");
             writer.flush();
             writer.close();
         } catch (Exception e) {
