@@ -1,5 +1,6 @@
 package com.freelxl.coin.hsa.spider;
 
+import com.freelxl.coin.hsa.conf.HSAConfig;
 import com.freelxl.coin.hsa.net.CURLUtil;
 import com.freelxl.coin.hsa.utils.DateTimeUtil;
 import okhttp3.OkHttpClient;
@@ -43,7 +44,7 @@ public class HSASpiderRunnable implements Runnable {
             }
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true)));
 
-            writer.append(startDateTime + " | " + endDateTime + result + "\n");
+            writer.append(startDateTime + HSAConfig.START_END_DATE_DIVIDER + endDateTime + result + "\n");
             writer.flush();
             writer.close();
         } catch (Exception e) {

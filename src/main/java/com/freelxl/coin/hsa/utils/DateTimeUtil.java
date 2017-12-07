@@ -1,6 +1,8 @@
 package com.freelxl.coin.hsa.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -31,5 +33,21 @@ public class DateTimeUtil {
         String hourString = formater.format(new Date());
 
         return hourString;
+    }
+
+    public static Calendar getCalendarFromDateString(String dateString) {
+
+
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        try {
+
+            Date date = formater.parse(dateString);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            return calendar;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
